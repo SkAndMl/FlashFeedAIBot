@@ -1,0 +1,5 @@
+google
+beautifulsoup4
+fake-useragent
+transformers
+torch
