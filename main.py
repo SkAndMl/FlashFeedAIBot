@@ -14,10 +14,10 @@ async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Welcome to FlashFeedAIBot")
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("I talk 5 times")
+    await update.message.reply_text("I collect the latest news on topics you enter")
 
 async def custom_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("This is a custom command")
+    await update.message.reply_text("I collect the latest news on topics you enter")
 
 def handle_response(text: str) -> str:
     links = get_links(query=text)
