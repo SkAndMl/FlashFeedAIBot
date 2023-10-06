@@ -43,7 +43,7 @@ def get_summary(texts: List[str]) -> List[str]:
 
     summarized_texts = []
     for text in texts:
-        summarized_texts.append(SUMMARIZER(text)[0]["summary_text"])
+        summarized_texts.append(SUMMARIZER(text[:1024])[0]["summary_text"])
     return summarized_texts
 
 

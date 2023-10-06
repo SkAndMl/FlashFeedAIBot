@@ -3,3 +3,4 @@ beautifulsoup4
 fake-useragent
 transformers
 torch
+python-telegram-bot
