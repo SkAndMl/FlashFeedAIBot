@@ -2,12 +2,16 @@ from typing import Final
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
 from scripts.utils import get_links, get_text_content, get_summary
+from dotenv import load_dotenv
+import os
 
-TOKEN : Final = "6302986945:AAF7JfNzf0yae43T1ZdEQKMGxMY1hRWKovA"
-BOT_USERNAME : Final = "@test5times_bot"
+load_dotenv()
+
+TOKEN : Final = os.getenv("TOKEN")
+BOT_USERNAME : Final = os.getenv("BOT_USERNAME")
 
 async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("Welcome to 5 times")
+    await update.message.reply_text("Welcome to FlashFeedAIBot")
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("I talk 5 times")
@@ -21,7 +25,7 @@ def handle_response(text: str) -> str:
     summarized_text = get_summary(texts=text_content)
     ans = ""
     for i in range(len(summarized_text)):
-        ans += f"News {i}:\n"
+        ans += f"News {i+1}:\n"
         ans += summarized_text[i] + "\n\n"
     return ans
 
