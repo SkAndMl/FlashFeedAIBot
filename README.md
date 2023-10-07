@@ -17,9 +17,10 @@ FlashFeedAIBot is a Telegram bot that delivers summarized news content based on 
 2. Enter the topic or keyword you want to know about.
 3. Receive a concise summary of the latest news articles related to your topic.
 
-## Screenshots
+## Demo
 
-<img width="981" alt="github_photo" src="./images/ss_1.png">
+https://github.com/SkAndMl/FlashFeedAIBot/assets/86184014/1944f604-2b8b-4e53-93eb-d2c796cdb67f
+
 
 <!-- Include screenshots of your bot in action here to showcase its features -->
 
