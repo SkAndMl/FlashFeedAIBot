@@ -19,7 +19,7 @@ FlashFeedAIBot is a Telegram bot that delivers summarized news content based on 
 
 ## Screenshots
 
-<img width="981" alt="github_photo" src="./images/screenshot_1.png">
+<img width="981" alt="github_photo" src="./images/ss_1.png">
 
 <!-- Include screenshots of your bot in action here to showcase its features -->
 
