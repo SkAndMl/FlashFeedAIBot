@@ -46,12 +46,12 @@ We welcome contributions to improve and expand the capabilities of FlashFeedAIBo
 4. Push to the branch: `git push origin feature-name`
 5. Create a pull request and describe your changes.
 
-## License
+<!--## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.-->
 
 ## Contact
 
-If you have any questions, feedback, or issues, feel free to contact us at [your-email@example.com](mailto:ts.sathyakrishnan2002@gmail.com) or open an issue in this repository.
+If you have any questions, feedback, or issues, feel free to contact us at [ts.sathyakrishnan2002@gmail.com](mailto:ts.sathyakrishnan2002@gmail.com) or open an issue in this repository.
 
 Happy news reading with FlashFeedAIBot! 📰🤖
