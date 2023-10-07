@@ -1,7 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
-from typing import List
+from typing import List, Dict
+from collections import defaultdict
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
 
 MODEL_NAME = "facebook/bart-large-cnn"
@@ -27,23 +28,27 @@ def get_links(query: str,
         links.append(li["href"])
     return links
 
-def get_text_content(links: str) -> List[str]:
-    texts = []
+def get_text_content(links: str) -> Dict[str, str]:
+    texts = defaultdict(str)
     ua = UserAgent()
     for link in links:
         response = requests.get(
             url=link,
             headers={"User-Agent" : ua.random}
         )
-        texts.append(BeautifulSoup(response.text, "lxml").text)
+        link_text = ""
+        link_soup = BeautifulSoup(response.text, "html.parser")
+        for p in link_soup.find_all("p"):
+            link_text += p.text + "\n"
+        texts[link] = link_text
     return texts
 
 
-def get_summary(texts: List[str]) -> List[str]:
+def get_summary(texts: Dict[str, str]) -> Dict[str, str]:
 
-    summarized_texts = []
-    for text in texts:
-        summarized_texts.append(SUMMARIZER(text[:1024])[0]["summary_text"])
+    summarized_texts = defaultdict(str)
+    for link, text in texts.items():
+        summarized_texts[link] = SUMMARIZER(text[:1024])[0]["summary_text"]
     return summarized_texts
 
 

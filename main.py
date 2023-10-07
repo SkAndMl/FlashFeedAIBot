@@ -21,13 +21,15 @@ async def custom_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 def handle_response(text: str) -> str:
     links = get_links(query=text)
-    text_content = get_text_content(links=links)
-    summarized_text = get_summary(texts=text_content)
+    texts = get_text_content(links=links)
+    summarized_texts = get_summary(texts=texts)
     ans = ""
-    for i in range(len(summarized_text)):
+    
+    for i, (link, summarized_text) in enumerate(summarized_texts.items()):
         ans += f"News {i+1}:\n"
-        ans += summarized_text[i] + "\n\n"
+        ans += summarized_text + "\n" + "Source link: " + link + "\n\n"
     return ans
+
 
 async def handle_message(update: Update,
                          context: ContextTypes.DEFAULT_TYPE):
