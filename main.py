@@ -1,4 +1,4 @@
-from typing import Final
+# from typing import Final
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
 from scripts.utils import get_links, get_text_content, get_summary
@@ -7,8 +7,8 @@ import os
 
 load_dotenv()
 
-TOKEN : Final = os.getenv("TOKEN")
-BOT_USERNAME : Final = os.getenv("BOT_USERNAME")
+TOKEN = os.getenv("TOKEN")
+BOT_USERNAME = os.getenv("BOT_USERNAME")
 
 async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Welcome to FlashFeedAIBot")
