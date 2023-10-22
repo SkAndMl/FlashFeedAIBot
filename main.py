@@ -1,8 +1,9 @@
-# from typing import Final
+from collections import defaultdict
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
-from scripts.utils_google import get_links, get_text_content, get_summary
+from scripts.utils_google import get_links, get_text_content
 from scripts.utils_yt import get_audio_file, extract_text_from_mp3
+from scripts.summarize import get_summary
 from dotenv import load_dotenv, find_dotenv
 import os
 
@@ -15,21 +16,36 @@ async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Welcome to FlashFeedAIBot")
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("I collect the latest news on topics you enter")
+    await update.message.reply_text(
+        """
+        I collect the latest news and summarize youtube videos for you.
+        To get the latest news about a particular topic simply text me the topic.
+        To summarize a youtube video, text a message in following format "url: <video_link>".
+"""
+    )
 
 async def custom_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("I collect the latest news on topics you enter")
 
 def handle_response(text: str) -> str:
-    links = get_links(query=text)
-    texts = get_text_content(links=links)
-    summarized_texts = get_summary(texts=texts)
-    ans = ""
-    
-    for i, (link, summarized_text) in enumerate(summarized_texts.items()):
-        ans += f"News {i+1}:\n"
-        ans += summarized_text + "\n" + "Source link: " + link + "\n\n"
-    return ans
+    if "url:" not in text: 
+        links = get_links(query=text)
+        texts = get_text_content(links=links)
+        summarized_texts = defaultdict(str)
+        for link, text in texts.items():
+            summarized_texts[link] = get_summary(text=text)
+        ans = ""
+        
+        for i, (link, summarized_text) in enumerate(summarized_texts.items()):
+            ans += f"News {i+1}:\n"
+            ans += summarized_text + "\n" + "Source link: " + link + "\n\n"
+        return ans
+    else:
+        url = text.split(":")[-1].strip()
+        get_audio_file(url=url)
+        text = extract_text_from_mp3("audio.mp3")
+        return f"Summarized content: \n{text}"
+
 
 
 async def handle_message(update: Update,
