@@ -3,15 +3,8 @@ from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 from typing import List, Dict
 from collections import defaultdict
-from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
 
-MODEL_NAME = "facebook/bart-large-cnn"
-# MODEL_NAME = "t5-small"
-TOKENIZER = AutoTokenizer.from_pretrained(MODEL_NAME)
-MODEL = AutoModelForSeq2SeqLM.from_pretrained(MODEL_NAME)
-SUMMARIZER = pipeline(task="summarization",
-                      model=MODEL,
-                      tokenizer=TOKENIZER)
+
 
 def get_links(query: str,
               num_links: int=4) -> List[str]:
@@ -45,11 +38,6 @@ def get_text_content(links: str) -> Dict[str, str]:
     return texts
 
 
-def get_summary(texts: Dict[str, str]) -> Dict[str, str]:
 
-    summarized_texts = defaultdict(str)
-    for link, text in texts.items():
-        summarized_texts[link] = SUMMARIZER(text[:1024])[0]["summary_text"]
-    return summarized_texts
 
 
