@@ -1,14 +1,15 @@
 # from typing import Final
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
-from scripts.utils import get_links, get_text_content, get_summary
+from scripts.utils_google import get_links, get_text_content, get_summary
+from scripts.utils_yt import get_audio_file, extract_text_from_mp3
 from dotenv import load_dotenv, find_dotenv
 import os
 
 load_dotenv(find_dotenv())
 
-TOKEN = "6107834126:AAFn4dxVRhpDHKa9asMEwGXolk8O8dJHZ8I"
-BOT_USERNAME = "@FlashFeedAIBot"
+TOKEN = os.getenv("TOKEN")
+BOT_USERNAME = os.getenv("BOT_USERNAME")
 
 async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Welcome to FlashFeedAIBot")

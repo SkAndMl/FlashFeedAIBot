@@ -7,3 +7,5 @@ python-dotenv
 sentencepiece
 accelerate
 lxml
+pytube
+SpeechRecognition
