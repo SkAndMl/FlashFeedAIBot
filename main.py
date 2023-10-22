@@ -7,8 +7,8 @@ import os
 
 load_dotenv(find_dotenv())
 
-TOKEN = os.getenv("TOKEN")
-BOT_USERNAME = os.getenv("BOT_USERNAME")
+TOKEN = "6107834126:AAFn4dxVRhpDHKa9asMEwGXolk8O8dJHZ8I"
+BOT_USERNAME = "@FlashFeedAIBot"
 
 async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Welcome to FlashFeedAIBot")
