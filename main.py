@@ -1,9 +1,9 @@
 from collections import defaultdict
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
-from scripts.utils_google import get_links, get_text_content
-from scripts.utils_yt import get_audio_file, extract_text_from_mp3
-from scripts.summarize import get_summary
+from utils.google import get_links, get_text_content
+from utils.youtube import get_audio_file, extract_text_from_mp3
+from utils.summarize import get_summary
 from dotenv import load_dotenv, find_dotenv
 import os
 
